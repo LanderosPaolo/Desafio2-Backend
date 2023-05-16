@@ -104,7 +104,7 @@
           <td>
             <button class="btn btn-warning" onclick="prepararCancion(${i},'${c.id
           }')">Editar</button>
-            <button class="btn btn-danger" onclick="eliminarCancion(${i},'${c.id
+            <button class="btn btn-danger" id="eliminar" onclick="eliminarCancion(${i},'${c.id
           }')">Eliminar</button>
           </td>
         </tr>
@@ -151,12 +151,15 @@
     cancion.value = canciones[i].titulo;
     artista.value = canciones[i].artista;
     tono.value = canciones[i].tono;
+    const botonesEliminar = document.querySelectorAll("button[id='eliminar']");
+    botonesEliminar.forEach((boton) => {
+      boton.disabled = true;
+    });
     document
       .getElementById("editar")
       .setAttribute("onclick", `editarCancion('${id}')`);
     document.getElementById("agregar").style.display = "none";
     document.getElementById("editar").style.display = "block";
-
   }
 
   function editarCancion(id) {
